@@ -25,3 +25,37 @@ nav{
     width: 8vw;
     object-fit: contain;
 }
+
+.nav-profile{
+    display: flex;
+    align-items: center;
+}
+
+.nav-profile-name{
+    color: #fff;
+    font-size: 1.2vw;
+    margin-right: 10px;
+}
+
+.fa-cart-shopping{
+    font-size: 2vw;
+    color: #fff;
+}
+
+.nav-profile-cart{
+    position: relative;
+}
+
+.cartcount{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 25px;
+    height: 25px;
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
