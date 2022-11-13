@@ -25,9 +25,19 @@ $(document).ready(() => {
     var html = '';
     for(let i = 0; i < product.length; i++){
         html += `<div class="product-items ${product[i].type}">
-                    <img class="product-img" src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80" alt="">
-                    <p style="font-size: 1.2vw;">Product name</p>
-                    <p style="font-size: 1vw;">500 THB</p>
+                    <img class="product-img" src="${product[i].img}" alt="${product[i].name}">
+                    <p style="font-size: 1.2vw;">${product[i].name}</p>
+                    <p style="font-size: 1vw;">${numberWithCommas(product[i].price)} THB</p>
                 </div>`;
     }
+
+    $("#productlist").html(html)
 })
+
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
