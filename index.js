@@ -63,3 +63,12 @@ function searchsomething(elem){
     }
 
 }
+
+function searchproduct(param){
+    $(".product-items").css('display', 'none')
+    if(param == 'all'){
+        $(".product-items").css('display', 'block')
+    } else {
+        $("."+param).css('display','block')
+    }
+}
