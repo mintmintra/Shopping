@@ -24,7 +24,7 @@ var product = [{
 $(document).ready(() => {
     var html = '';
     for(let i = 0; i < product.length; i++){
-        html += `<div class="product-items ${product[i].type}">
+        html += `<div onclick="openProductDetail(${i})" class="product-items ${product[i].type}">
                     <img class="product-img" src="${product[i].img}" alt="${product[i].name}">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
                     <p style="font-size: 1vw;">${numberWithCommas(product[i].price)} THB</p>
@@ -49,7 +49,7 @@ function searchsomething(elem){
     var html = '';
     for(let i = 0; i < product.length; i++){
         if(product[i].name.includes(value)) {
-            html += `<div class="product-items ${product[i].type}">
+            html += `<div onclick="openProductDetail(${i})" class="product-items ${product[i].type}">
                     <img class="product-img" src="${product[i].img}" alt="${product[i].name}">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
                     <p style="font-size: 1vw;">${numberWithCommas(product[i].price)} THB</p>
@@ -71,4 +71,11 @@ function searchproduct(param){
     } else {
         $("."+param).css('display','block')
     }
+}
+
+var productindex = 0;
+function openProductDetail(index){
+    productindex = index;
+    console.log(productindex)
+    $("#modalDesc").css('display','flex')
 }
