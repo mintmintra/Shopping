@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="index.css">
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -19,10 +20,10 @@
 
         <div class="nav-profile">
             <p class="nav-profile-name">Mint Mintra</p>
-            <div class="nav-profile-cart">
+            <div onclick="openCart()" style="cursor: pointer;" class="nav-profile-cart">
                 <i class="fas fa-cart-shopping"></i>
-                <div class="cartcount">
-                    5
+                <div id="cartcount" class="cartcount" style="display: none;">
+                    0
                 </div>
             </div>
         </div>
@@ -46,23 +47,23 @@
     </div>
 
     <div id="modalDesc" class="modal" style="display: none;">
-        <div class="modal-bg"></div>
+        <div onclick="closeModal()" class="modal-bg"></div>
         <div class="modal-page">
             <h2>Detail</h2>
             <br>
             <div class="modaldesc-content">
-                <img class="modaldesc-img" src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80" alt="modal">
+                <img id="mdd-img" class="modaldesc-img" src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80" alt="modal">
                 <div class="modaldesc-detail">
-                   <p style="font-size: 1.5vw;">Product name</p>
-                   <p style="font-size: 1.2vw;">500 THB</p>
+                   <p id="mdd-name" style="font-size: 1.5vw;">Product name</p>
+                   <p id="mdd-price" style="font-size: 1.2vw;">500 THB</p>
                    <br>
-                   <p style="color: #adadad;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde praesentium rerum nostrum iure voluptas ducimus ratione sit tenetur tempora vel, molestias magni suscipit, exercitationem sapiente similique commodi natus? Nemo, possimus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ex quidem iste culpa natus, debitis nisi esse praesentium distinctio.</p>
+                   <p id="mdd-desc" style="color: #adadad;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde praesentium rerum nostrum iure voluptas ducimus ratione sit tenetur tempora vel, molestias magni suscipit, exercitationem sapiente similique commodi natus? Nemo, possimus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ex quidem iste culpa natus, debitis nisi esse praesentium distinctio.</p>
                    <br>
                    <div class="btn-control">
-                    <button class="btn">
+                    <button onclick="closeModal()" class="btn">
                         Close
                     </button>
-                    <button class="btn btn-buy">
+                    <button onclick="addtocart()" class="btn btn-buy">
                         Add to cart
                     </button>
                    </div>
@@ -71,57 +72,16 @@
         </div>
     </div>
 
-    <div class="modal" style="display: none;">
-        <div class="modal-bg"></div>
+    <div id="modalCart" class="modal" style="display: none;">
+        <div onclick="closeModal()" class="modal-bg"></div>
         <div class="modal-page">
             <h2>My cart</h2>
             <br>
-            <div class="cartlist">
-                <div class="cartlist-items">
-                    <div class="cartlist-left">
-                        <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80" alt="cartlist">
-                        <div class="cartlist-detail">
-                            <p style="font-size: 1.5vw;">Product name</p>
-                            <p style="font-size: 1.2vw;">500 THB</p>
-                        </div>
-                    </div>
-                    <div class="cartlist-right">
-                        <p class="btnc">-</p>
-                        <p style="margin: 0 20px;">1</p>
-                        <p class="btnc">+</p>
-                    </div>
-                </div>
-                <div class="cartlist-items">
-                    <div class="cartlist-left">
-                        <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80" alt="cartlist">
-                        <div class="cartlist-detail">
-                            <p style="font-size: 1.5vw;">Product name</p>
-                            <p style="font-size: 1.2vw;">500 THB</p>
-                        </div>
-                    </div>
-                    <div class="cartlist-right">
-                        <p class="btnc">-</p>
-                        <p style="margin: 0 20px;">1</p>
-                        <p class="btnc">+</p>
-                    </div>
-                </div>
-                <div class="cartlist-items">
-                    <div class="cartlist-left">
-                        <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80" alt="cartlist">
-                        <div class="cartlist-detail">
-                            <p style="font-size: 1.5vw;">Product name</p>
-                            <p style="font-size: 1.2vw;">500 THB</p>
-                        </div>
-                    </div>
-                    <div class="cartlist-right">
-                        <p class="btnc">-</p>
-                        <p style="margin: 0 20px;">1</p>
-                        <p class="btnc">+</p>
-                    </div>
-                </div>
+            <div id="mycart" class="cartlist">
+                
             </div>
             <div class="btn-control">
-                <button class="btn">
+                <button onclick="closeModal()" class="btn">
                     Cancel
                 </button>
                 <button class="btn btn-buy">

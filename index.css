@@ -148,7 +148,6 @@ nav{
     min-width: 30vw;
     max-width: 60vw;
     max-height: 30vw;
-    overflow: scroll;
     background: #fff;
     border-radius: 15px;
     padding: 20px;
